@@ -1,7 +1,7 @@
 import APIService from './APIService';
 
 const fetchRestaurantCategories = async () => await APIService.invoke({
-	url: `${baseUrl}categories`,
+	url: ``,
 	method: 'GET'
 });
 

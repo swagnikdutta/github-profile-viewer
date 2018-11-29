@@ -4,18 +4,18 @@ import * as actionTypes from './actionTypes';
 const _ = require('lodash');
 
 const fetchRestaurantCategories = () => async (dispatch) => {
-	showLoader(dispatch);
+	// showLoader(dispatch);
 
-	let restaurantCategories = await ZomatoService.fetchRestaurantCategories().catch((e) => {
-		console.log('There was an error fetching categories or restaurant types.')
-	});
+	// let restaurantCategories = await ZomatoService.fetchRestaurantCategories().catch((e) => {
+	// 	console.log('There was an error fetching categories or restaurant types.')
+	// });
 
-	dispatch({
-		type: actionTypes.FETCH_CATEGORIES,
-		restaurantCategories: _.get(restaurantCategories, 'data.categories')
-	});
+	// dispatch({
+	// 	type: actionTypes.FETCH_CATEGORIES,
+	// 	restaurantCategories: _.get(restaurantCategories, 'data.categories')
+	// });
 
-	hideLoader(dispatch);
+	// hideLoader(dispatch);
 }
 
 const showLoader = (dispatch) => {
