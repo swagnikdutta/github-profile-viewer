@@ -3,12 +3,9 @@ import { updateObject } from '../utility';
 
 const initialState = {
 	userDetails: {},
-	userRepositories: [],
-	loaderVisibility: false,
+	userRepositories: []
 };
 
-const showLoader 			= (state) => updateObject(state, { loaderVisibility: true });
-const hideLoader 			= (state) => updateObject(state, { loaderVisibility: false });
 const getUserDetails 		= (state, { userDetails }) => updateObject(state, { userDetails });
 const getUserRepositories 	= (state, { userRepositories }) => updateObject(state, { userRepositories });
 

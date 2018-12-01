@@ -6,7 +6,6 @@ import _ from 'lodash';
 import Actions from '../../store/actions/actions';
 
 // Components
-import Loader from '../../hoc/Loader/Loader';
 import UserDetails from '../../components/Profile/UserDetails/UserDetails';
 import UserActivities from '../../components/Profile/UserActivities/UserActivities';
 import { Wrapper } from './Style.js';
