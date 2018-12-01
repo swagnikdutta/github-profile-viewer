@@ -28,21 +28,19 @@ class Repositories extends Component{
 	}
 	
 	fetchFilteredRepos = (matchedRepositories) => {
-		let temp = [];
+		let filteredRepositories = [];
+
 		this.state.userRepositories.forEach((elem) => {
 			if(matchedRepositories.includes(elem.name)){
-				temp.push(elem);
+				filteredRepositories.push(elem);
 			}
 		});
-		
-		this.setState({
-			filteredRepositories: temp
-		});
+		this.setState({ filteredRepositories });
 	}
 
 	render(){
 		let allCards = this.state.filteredRepositories.map((elem, idx) => {
-			return <Card name={elem.name} description={elem.description} language={elem.language} key={elem.name+" "+idx} />
+			return <Card name={elem.name} description={elem.description} language={elem.language} key={elem.name} />
 		});
 
 		return (

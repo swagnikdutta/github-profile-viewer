@@ -19,11 +19,9 @@ const collections = ({ userDetails }) => {
 			<Name>{name}</Name>
 			<Username>{login}</Username>
 			<Bio>{bio}</Bio>
-
 			<DefaultText>{company}</DefaultText>
 			<DefaultText>{location}</DefaultText>
 			<DefaultText>{email}</DefaultText>
-
 		</Wrapper>
 	);	
 };

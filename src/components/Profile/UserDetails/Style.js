@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	// border: 1px solid lightgrey;
 	float: left;
 	width: 25%;
 	padding: 0 20px 0 20px;
@@ -10,7 +9,6 @@ export const Wrapper = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-	// border: 1px solid lightgrey;
 	height: 230px;
 	width: 230px;
 	background: url( ${props => props.imageUrl} ) no-repeat center;
@@ -19,7 +17,6 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Name = styled.p`
-	// border: 1px solid lightgrey;
 	font-weight: bold;
 	font-size: 22px;
 	font-family: 'Arimo', serif;
@@ -27,7 +24,6 @@ export const Name = styled.p`
 `;
 
 export const Username = styled.p`
-	// border: 1px solid lightgrey;
 	color: grey;
 	font-size: 20px;
 	margin: 0;
