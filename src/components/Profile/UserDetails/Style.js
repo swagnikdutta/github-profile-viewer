@@ -5,7 +5,10 @@ export const Wrapper = styled.div`
 	width: 25%;
 	padding: 0 20px 0 20px;
 
-	height: 100vh;
+	@media (min-width: 320px) and (max-width: 480px) {
+    	width: 100%;
+    	margin-bottom: 5%;
+	}
 `;
 
 export const ImageWrapper = styled.div`
@@ -14,6 +17,9 @@ export const ImageWrapper = styled.div`
 	background: url( ${props => props.imageUrl} ) no-repeat center;
 	background-size: cover;
 	border-radius: 50%;
+	@media (min-width: 320px) and (max-width: 480px) {
+    	margin: 0 auto;
+	}
 `;
 
 export const Name = styled.p`

@@ -15,4 +15,7 @@ export const Input = styled.input`
 	&:focus{
 		outline: none;
 	}
+	@media (min-width: 320px) and (max-width: 480px) {
+    	width: 100%;
+	}
 `;
