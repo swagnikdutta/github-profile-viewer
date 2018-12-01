@@ -3,19 +3,34 @@ import * as actionTypes from './actionTypes';
 
 const _ = require('lodash');
 
-const fetchRestaurantCategories = () => async (dispatch) => {
-	// showLoader(dispatch);
+const getUserDetails = (userName) => async (dispatch) => {
+	showLoader(dispatch);
 
-	// let restaurantCategories = await ZomatoService.fetchRestaurantCategories().catch((e) => {
-	// 	console.log('There was an error fetching categories or restaurant types.')
-	// });
+	let userDetails = await GithubService.getUserDetails(userName).catch((e) => {
+		console.log(`There was an error fetching user details for: ${userName}`);
+	});
+	
+	dispatch({
+		type: actionTypes.FETCH_USER_DETAILS,
+		userDetails: _.get(userDetails, 'data')
+	});
 
-	// dispatch({
-	// 	type: actionTypes.FETCH_CATEGORIES,
-	// 	restaurantCategories: _.get(restaurantCategories, 'data.categories')
-	// });
+	hideLoader(dispatch);
+}
 
-	// hideLoader(dispatch);
+const getUserRepositories = (userName) => async (dispatch) => {
+	showLoader(dispatch);
+
+	let userRepositories = await GithubService.getUserRepositories(userName).catch((e) => {
+		console.log(`There was an error fetching repositories for: ${userName}`);
+	});
+	
+	dispatch({
+		type: actionTypes.FETCH_USER_REPOSITORIES,
+		userRepositories: _.get(userRepositories, 'data')
+	});
+
+	hideLoader(dispatch);
 }
 
 const showLoader = (dispatch) => {
@@ -27,5 +42,6 @@ const hideLoader = (dispatch) => {
 }
 
 export default {
-	fetchRestaurantCategories
+	getUserDetails,
+	getUserRepositories
 }

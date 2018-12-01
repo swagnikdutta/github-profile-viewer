@@ -1,10 +1,20 @@
 import APIService from './APIService';
 
-const fetchRestaurantCategories = async () => await APIService.invoke({
-	url: ``,
-	method: 'GET'
-});
+const getUserDetails = async (userName) => {
+	return await APIService.invoke({
+		url: `https://api.github.com/users/${userName}`,
+		method: 'GET'
+	});	
+}
+
+const getUserRepositories = async (userName) => {
+	return await APIService.invoke({
+		url: `https://api.github.com/users/${userName}/repos`,
+		method: 'GET'
+	});	
+}
 
 export default {
-	fetchRestaurantCategories
+	getUserDetails,
+	getUserRepositories
 };

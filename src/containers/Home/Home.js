@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
-import _ from 'lodash';
-
-import Actions from '../../store/actions/actions';
 
 // Components
-import Loader from '../../hoc/Loader/Loader';
-import Collections from '../../components/Collections/Collections';
+import { Wrapper, Form, Input, Button } from './Style.js';
 
 class Home extends Component{
+	state = {
+		userName: ''
+	}
 
-	async componentDidMount(){
-		// this.props.fetchRestaurantCategories();
+	handleChange = (e) => {
+		this.setState({ 
+			userName: e.target.value 
+		});
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault();
+
+		let navigateObj = { 
+			pathname: `/${this.state.userName}`
+		};
+
+		this.props.history.push(navigateObj);
 	}
 
 	render(){
-		let city = this.props.match.params.city;
 		return (
-			<div>
-				
-			</div>
+			<Wrapper>
+				<Form>
+					<div>
+						<label htmlFor="userName">Enter github username</label>
+						<Input type="text" autoComplete="off" id="userName" placeholder="eg: swagnikdutta" value={this.state.userName} onChange={this.handleChange} />
+					</div>
+					<Button type="submit" onClick={this.handleSubmit}>Submit</Button>	
+				</Form>
+			</Wrapper>
 		)
 	}
 }
 
-const mapStateToProps = state => {
-    return {
-    	// restaurantCategories: _.get(state, 'zomatoReducer.restaurantCategories', []),
-    	loaderVisibility: _.get(state, 'zomatoReducer.loaderVisibility', false)
-    };
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        // fetchRestaurantCategories: () => dispatch(Actions.fetchRestaurantCategories())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));
+export default Home;

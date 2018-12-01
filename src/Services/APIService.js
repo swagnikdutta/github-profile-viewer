@@ -6,15 +6,15 @@ const invoke = (options) => {
             url: options.url,
             method: options.method,
         }).then((response) => {
-            // resolve({
-            //     data: response.data,
-            //     statusCode: response.status,
-            // });
+            resolve({
+                data: response.data,
+                statusCode: response.status,
+            });
         }).catch((err) => {
-            // reject({
-            //     statusCode: err.response.status,
-            //     errorMessage: err.response.data.message
-            // });
+            reject({
+                statusCode: 404,
+                errorMessage: err.message ? err.message : 'Something went wrong!'
+            });
         });
     });
 };

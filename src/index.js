@@ -8,13 +8,11 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import ScrollToTop from './hoc/ScrollToTop/ScrollToTop';
-import zomatoReducer from './store/reducers/index';
+import mainReducer from './store/reducers/index';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const rootReducer = combineReducers({
-	zomatoReducer: zomatoReducer
-});
+const rootReducer = combineReducers({ mainReducer });
 
 const store = createStore(rootReducer, composeEnhancers(
 	applyMiddleware(thunk)
