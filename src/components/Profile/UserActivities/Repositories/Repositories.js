@@ -7,18 +7,23 @@ import { Wrapper } from './Style.js';
 
 class Repositories extends Component{
 	state = {
-		userRepositories: []
+		userRepositories: [],
+		filteredRepositories: []
 	}
 
 	componentDidMount(){
 		this.setState({
-			userRepositories: this.props.userRepositories
+			userRepositories: this.props.userRepositories,
+			filteredRepositories: this.props.userRepositories
 		});
 	}
 
 	componentWillReceiveProps({ userRepositories }){
 		if(this.state.userRepositories !== userRepositories){
-			this.setState({ userRepositories });
+			this.setState({ 
+				userRepositories,
+				filteredRepositories: userRepositories
+			});
 		}
 	}
 	
@@ -28,15 +33,15 @@ class Repositories extends Component{
 			if(matchedRepositories.includes(elem.name)){
 				temp.push(elem);
 			}
-		})
+		});
 		
 		this.setState({
-			userRepositories: temp
+			filteredRepositories: temp
 		});
 	}
 
 	render(){
-		let allCards = this.state.userRepositories.map((elem, idx) => {
+		let allCards = this.state.filteredRepositories.map((elem, idx) => {
 			return <Card name={elem.name} description={elem.description} language={elem.language} key={elem.name+" "+idx} />
 		});
 
