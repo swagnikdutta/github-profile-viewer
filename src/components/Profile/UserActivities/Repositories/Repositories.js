@@ -27,7 +27,7 @@ class Repositories extends Component{
 		}
 	}
 	
-	doSomething = (matchedRepositories) => {
+	fetchFilteredRepos = (matchedRepositories) => {
 		let temp = [];
 		this.state.userRepositories.forEach((elem) => {
 			if(matchedRepositories.includes(elem.name)){
@@ -47,7 +47,7 @@ class Repositories extends Component{
 
 		return (
 			<Wrapper>
-				<Utilities userRepositories={this.state.userRepositories} onRepoListUpdated={this.doSomething} />
+				<Utilities userRepositories={this.state.userRepositories} onRepoListUpdated={this.fetchFilteredRepos} />
 				{allCards}
 			</Wrapper>
 		)
