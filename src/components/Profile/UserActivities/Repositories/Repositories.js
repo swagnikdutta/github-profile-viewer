@@ -27,14 +27,24 @@ class Repositories extends Component{
 		}
 	}
 	
-	fetchFilteredRepos = (matchedRepositories) => {
+	fetchFilteredRepos = (matchedRepositories, searchParam) => {
 		let filteredRepositories = [];
 
-		this.state.userRepositories.forEach((elem) => {
-			if(matchedRepositories.includes(elem.name)){
-				filteredRepositories.push(elem);
-			}
-		});
+		if(searchParam === 'repoName'){
+			this.state.userRepositories.forEach((elem) => {
+				if(matchedRepositories.includes(elem.name)){
+					filteredRepositories.push(elem);
+				}
+			});
+		}else if(searchParam === 'language'){
+			this.state.userRepositories.forEach((elem) => {
+				if(matchedRepositories.includes(elem.language)){
+					filteredRepositories.push(elem);
+				}
+			});
+		}
+
+		
 		this.setState({ filteredRepositories });
 	}
 

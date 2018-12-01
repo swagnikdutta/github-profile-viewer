@@ -5,44 +5,58 @@ import { Wrapper, Input } from './Style.js';
 
 class Utilities extends Component{
 	state = {
-		repositoryNames: []
+		repositoryNames: [],
+		userRepositories: []
 	}
 
 	componentDidMount(){
 		this.setState({
-			repositoryNames: this.props.userRepositories.map(elem => elem.name)
+			repositoryNames: this.props.userRepositories.map(elem => elem.name),
+			userRepositories: this.props.userRepositories
 		});
 	}
 
 	componentWillReceiveProps(newProps){
 		this.setState({
-			repositoryNames: newProps.userRepositories.map(elem => elem.name)
+			repositoryNames: newProps.userRepositories.map(elem => elem.name),
+			userRepositories: newProps.userRepositories
 		});
 	}
 
 	getFilteredRepositories = (filterParam, filterQuery) => {
-		let filteredResults = [];
-		
-		this.state.repositoryNames.forEach(elem => {
-			if(elem.toLowerCase().startsWith(filterQuery.toLowerCase())){
-				filteredResults.push(elem);
+		let filteredResults = [],
+			data = filterParam === 'repoName' ? this.state.repositoryNames : this.state.userRepositories,
+			key = filterParam === 'repoName' ? '' : 'language';
+
+		data.forEach(elem => {
+			let temp = typeof elem === 'string' ? elem : _.get(elem, key, '');
+			if(temp && temp.toLowerCase().startsWith(filterQuery.toLowerCase())) {
+				filteredResults.push(temp);
 			}
 		});
 		
 		return filteredResults;
 	}
 
-	handleChange = (e) => {
+	handleSeachByRepoName = (e) => {
 		let repoNamePrefix = e.target.value,
-			matchedRepositories = this.getFilteredRepositories('prefix', repoNamePrefix);
+			matchedRepositories = this.getFilteredRepositories('repoName', repoNamePrefix);
 
-		this.props.onRepoListUpdated(matchedRepositories);
+		this.props.onRepoListUpdated(matchedRepositories, 'repoName');
+	}
+
+	handleSeachByLanguage = (e) => {
+		let language = e.target.value,
+			matchedRepositories = this.getFilteredRepositories('language', language);
+
+		this.props.onRepoListUpdated(matchedRepositories, 'language');
 	}
 
 	render(){
 		return (
 			<Wrapper>
-				<Input type="text" autoComplete="off" placeholder="Find a repository..." onChange={this.handleChange}/>
+				<Input type="text" autoComplete="off" placeholder="Find a repository..." onChange={this.handleSeachByRepoName}/>
+				<Input type="text" autoComplete="off" placeholder="Search repository by language..." onChange={this.handleSeachByLanguage}/>
 			</Wrapper>
 		);
 	}
