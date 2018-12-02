@@ -8,11 +8,7 @@ class Home extends Component{
 		userName: ''
 	}
 
-	handleChange = (e) => {
-		this.setState({ 
-			userName: e.target.value 
-		});
-	}
+	handleChange = (e) => this.setState({ userName: e.target.value });
 
 	handleSubmit = (e) => {
 		e.preventDefault();

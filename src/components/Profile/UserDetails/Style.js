@@ -17,6 +17,7 @@ export const ImageWrapper = styled.div`
 	background: url( ${props => props.imageUrl} ) no-repeat center;
 	background-size: cover;
 	border-radius: 50%;
+	
 	@media (min-width: 320px) and (max-width: 480px) {
     	margin: 0 auto;
 	}

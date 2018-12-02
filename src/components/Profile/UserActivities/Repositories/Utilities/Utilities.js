@@ -9,13 +9,6 @@ class Utilities extends Component{
 		userRepositories: []
 	}
 
-	componentDidMount(){
-		this.setState({
-			repositoryNames: this.props.userRepositories.map(elem => elem.name),
-			userRepositories: this.props.userRepositories
-		});
-	}
-
 	componentWillReceiveProps(newProps){
 		this.setState({
 			repositoryNames: newProps.userRepositories.map(elem => elem.name),

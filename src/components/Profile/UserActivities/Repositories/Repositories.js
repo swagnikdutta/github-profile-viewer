@@ -10,13 +10,6 @@ class Repositories extends Component{
 		filteredRepositories: []
 	}
 
-	componentDidMount(){
-		this.setState({
-			userRepositories: this.props.userRepositories,
-			filteredRepositories: this.props.userRepositories
-		});
-	}
-
 	componentWillReceiveProps({ userRepositories }){
 		if(this.state.userRepositories !== userRepositories){
 			this.setState({ 
@@ -27,30 +20,20 @@ class Repositories extends Component{
 	}
 	
 	fetchFilteredRepos = (matchedRepositories, searchParam) => {
-		let filteredRepositories = [];
+		let filteredRepositories = [],
+			key = searchParam === 'repoName' ? 'name' : 'language';
 
-		if(searchParam === 'repoName'){
-			this.state.userRepositories.forEach((elem) => {
-				if(matchedRepositories.includes(elem.name)){
-					filteredRepositories.push(elem);
-				}
-			});
-		}else if(searchParam === 'language'){
-			this.state.userRepositories.forEach((elem) => {
-				if(matchedRepositories.includes(elem.language)){
-					filteredRepositories.push(elem);
-				}
-			});
-		}
-
+		this.state.userRepositories.forEach((elem) => {
+			if(matchedRepositories.includes(elem[key])){
+				filteredRepositories.push(elem);
+			}
+		});
 		
 		this.setState({ filteredRepositories });
 	}
 
 	render(){
-		let allCards = this.state.filteredRepositories.map((elem, idx) => {
-			return <Card name={elem.name} description={elem.description} language={elem.language} key={elem.name} />
-		});
+		let allCards = this.state.filteredRepositories.map(elem => <Card name={elem.name} description={elem.description} language={elem.language} key={elem.name} />);
 
 		return (
 			<Wrapper>
