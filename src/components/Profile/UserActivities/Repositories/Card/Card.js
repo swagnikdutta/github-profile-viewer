@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 import { Wrapper, RepoName, Description, DefaultText } from './Style.js';
 
